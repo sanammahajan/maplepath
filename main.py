@@ -83,7 +83,7 @@ def is_personal_advice(question: str) -> bool:
     return any(t in q for t in triggers)
 
 
-@app.get("/")
+@app.get("/health")
 def health():
     return {"status": "MaplePath running"}
 
@@ -158,7 +158,7 @@ Question:
         "sources": sources
     }
 
-@app.get("/ui")
+@app.get("/")
 def ui(request: Request):
     return templates.TemplateResponse(
         "index.html",
@@ -166,7 +166,7 @@ def ui(request: Request):
     )
 
 
-@app.post("/ui")
+@app.post("/")
 def ui_post(request: Request, question: str = Form(...)):
     result = ask(request, question)
     return templates.TemplateResponse(
